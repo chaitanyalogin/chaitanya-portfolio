@@ -156,10 +156,15 @@ export function initializePortfolio() {
   const dialog = $('#media-dialog');
   let trigger;
   function closeMedia() { dialog.close(); }
-  for (const button of $$('[data-media]')) button.addEventListener('click', () => {
+  for (const button of $$('[data-media]')) button.addEventListener('click', event => {
     const media = MEDIA[button.dataset.media];
     if (!media) return;
-    if (typeof dialog.showModal !== 'function') { window.open(media.external, '_blank', 'noopener,noreferrer'); return; }
+    if (typeof dialog.showModal !== 'function') {
+      if (button.tagName !== 'A') window.open(media.external, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
     trigger = button;
     $('#media-dialog-label').textContent = media.label;
     $('#media-dialog-title').textContent = media.title;

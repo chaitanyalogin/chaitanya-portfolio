@@ -24,7 +24,7 @@ export default function PortfolioPage() {
 
   <header className="site-header" id="site-header">
     <div className="header-inner">
-      <a className="brand" href="#home" aria-label="Chaitanya Kulkarni home"><span className="brand-mark">c<span>.</span></span><span>CHAY<span className="brand-period">.</span></span></a>
+      <a className="brand" href="#home" aria-label="Chaitanyachidambar S. Kulkarni home"><span className="brand-mark">c<span>.</span></span><span>CHAY<span className="brand-period">.</span></span></a>
       <nav className="main-nav" id="main-nav" aria-label="Main navigation">
         <a href="#work">Work</a><a href="#about">About</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
       </nav>
@@ -41,7 +41,7 @@ export default function PortfolioPage() {
     <section className="hero section-dark" id="home" aria-labelledby="hero-title">
       <div className="hero-grid container">
         <div className="hero-copy">
-          <div className="eyebrow hero-intro"><span className="small-dot"></span> CHAITANYA KULKARNI <span className="muted-separator">/</span> BENGALURU</div>
+          <div className="eyebrow hero-intro"><span className="small-dot"></span> CHAITANYACHIDAMBAR S. KULKARNI <span className="muted-separator">/</span> BENGALURU</div>
           <h1 id="hero-title">I turn ideas<br />into <span className="serif accent-text">real things.</span></h1>
           <p className="hero-description">Full stack developer. A curious mind behind web applications, Python workflows, music and documentary videos.</p>
           <div className="hero-buttons"><a className="button button-accent" href="#work">Explore my work <svg className="icon"><use href="#i-arrow"/></svg></a><a className="text-link" href="#contact">Let's talk <svg className="icon"><use href="#i-external"/></svg></a></div>
@@ -90,7 +90,7 @@ export default function PortfolioPage() {
             <p>Compares expected customer access with real application decisions, groups mismatches into incidents, and resolves them when fresh observations match.</p>
             <div className="tag-list"><span>TypeScript</span><span>React</span><span>Fastify</span><span>PostgreSQL</span><span>Redis / BullMQ</span><span>Docker</span></div>
             <div className="project-evidence"><div><strong>7</strong><span>unit & security tests</span></div><div><strong>18</strong><span>integration checks</span></div><div><strong>1</strong><span>browser flow</span></div></div>
-            <div className="project-actions"><button className="button button-dark" data-media="entitlement">Explore the demo <svg className="icon"><use href="#i-external"/></svg></button><a className="text-link" href="https://github.com/chaitanyalogin/entitlementci" target="_blank" rel="noopener noreferrer">View source <svg className="icon"><use href="#i-github"/></svg></a></div>
+            <div className="project-actions"><a className="button button-dark" data-media="entitlement" href="https://entitlementci-review.vercel.app/" target="_blank" rel="noopener noreferrer">Explore the demo <svg className="icon"><use href="#i-external"/></svg></a><a className="text-link" href="https://github.com/chaitanyalogin/entitlementci" target="_blank" rel="noopener noreferrer">View source <svg className="icon"><use href="#i-github"/></svg></a></div>
             <details className="project-details"><summary>A closer look at the engineering <span>+</span></summary><p>A Node SDK records access and usage. A BullMQ worker compares observations using transactional PostgreSQL updates. Duplicate checks, stale event handling, tenant isolation, role based permissions and signed webhooks support the workflow.</p><a href="https://api-production-48225.up.railway.app/" target="_blank" rel="noopener noreferrer">Open the backend and dashboard ↗</a><p className="detail-note">Portfolio application. The reviewer demo uses sample data; the separate hosted application runs the API, database and worker. Test results are documented in the repository.</p></details>
           </div>
         </article>
@@ -122,8 +122,8 @@ export default function PortfolioPage() {
           <div className="timeline">
             <article className="timeline-item reveal"><div className="timeline-date">SEP 2025 TO JUL 2026</div><h4>Software Engineer Intern</h4><span className="timeline-place">HAEGL Technologies / Hubli</span><p>Responsive React components, MERN features, REST API integration, authentication, state management and debugging.</p></article>
             <article className="timeline-item reveal"><div className="timeline-date">JUN 2025 TO JUL 2025</div><h4>Junior Software Engineer</h4><span className="timeline-place">iTriangle Infotech / Bengaluru</span><p>Power BI dashboards for end of line testing, MIS and operational reporting, with MySQL, Python/Pandas, DAX and data validation.</p></article>
-            <article className="timeline-item reveal"><div className="timeline-date">EARLIER EXPERIENCE</div><h4>Data Analyst Intern</h4><span className="timeline-place">AI Variant</span><p>Data analysis using SQL, Power BI, Tableau, Excel and Python.</p></article>
-            <article className="timeline-item education-item reveal"><div className="timeline-date">CURRENTLY PURSUING</div><h4>Master of Computer Applications</h4><span className="timeline-place">Jain University / Full Stack Development</span><p>Online program. Semesters I and II completed. Additional ExcelR certifications in Data Analytics, Data Science and Core Python Programming.</p></article>
+            <article className="timeline-item reveal"><div className="timeline-date">EARLIER EXPERIENCE</div><h4>Data Analyst Intern</h4><span className="timeline-place">AI Variant</span><p>Data analysis using SQL, Power BI, Tableau, Excel and Python.</p><div className="timeline-visual"><img src="/assets/analytics-illustration.svg" alt="Illustration of SQL data analysis and dashboard reporting" width="520" height="210" loading="lazy" /></div></article>
+            <article className="timeline-item education-item reveal"><div className="timeline-date">CURRENTLY PURSUING</div><h4>Master of Computer Applications</h4><span className="timeline-place">Jain University / Full Stack Development</span><p>Online program. Semesters I and II completed. Additional ExcelR certifications in Data Analytics, Data Science and Core Python Programming.</p><div className="timeline-visual"><img src="/assets/mca-illustration.svg" alt="Illustration of full stack development studies in my ongoing MCA" width="520" height="210" loading="lazy" /></div></article>
           </div>
         </div>
       </div>
@@ -155,7 +155,7 @@ export default function PortfolioPage() {
     </section>
   </main>
 
-  <footer className="site-footer section-dark"><div className="container footer-top"><a className="footer-brand" href="#home">CHAY<span>.</span></a><p>Chaitanyachidambar S. Kulkarni<br /><span>Developer & creator / Bengaluru</span></p><a className="back-top" href="#home">Back to top <svg className="icon"><use href="#i-external"/></svg></a></div><div className="container footer-bottom"><span>© <span id="year">2026</span> Chaitanya Kulkarni</span><span>Built with logic. And a little imagination.</span><span>KEEP EXPLORING ✳</span></div></footer>
+  <footer className="site-footer section-dark"><div className="container footer-top"><a className="footer-brand" href="#home">CHAY<span>.</span></a><p>Chaitanyachidambar S. Kulkarni<br /><span>Developer & creator / Bengaluru</span></p><a className="back-top" href="#home">Back to top <svg className="icon"><use href="#i-external"/></svg></a></div><div className="container footer-bottom"><span>© <span id="year">2026</span> Chaitanyachidambar S. Kulkarni</span><span>Built with logic. And a little imagination.</span><span>KEEP EXPLORING ✳</span></div></footer>
   <a className="floating-whatsapp" href="https://wa.me/919591454650?text=Hi%20Chaitanya%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer" aria-label="Contact Chaitanya on WhatsApp"><svg className="icon"><use href="#i-whatsapp"/></svg><span>Let's talk</span></a>
   <div className="toast" id="toast" role="status" aria-live="polite"></div>
   <dialog className="media-dialog" id="media-dialog" aria-labelledby="media-dialog-title"><div className="dialog-heading"><div><span className="micro-label" id="media-dialog-label">PROJECT DEMO</span><h2 id="media-dialog-title">EntitlementCI</h2></div><button className="dialog-close" id="media-close" aria-label="Close player"><svg className="icon"><use href="#i-close"/></svg></button></div><div className="media-frame" id="media-frame"></div><div className="dialog-footer"><p id="media-dialog-note"></p><a id="media-external" target="_blank" rel="noopener noreferrer">Open in a new tab <svg className="icon"><use href="#i-external"/></svg></a></div></dialog>

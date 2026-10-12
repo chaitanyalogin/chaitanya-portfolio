@@ -5,11 +5,11 @@ const shareImages = publicURL ? [{ url: new URL('/assets/social-card.png', publi
 
 export const metadata = {
   ...(publicURL ? { metadataBase: new URL(publicURL), alternates: { canonical: '/' } } : {}),
-  title: 'Chaitanya Kulkarni | Full Stack Developer & Creator',
-  description: 'Chaitanya Kulkarni, a full stack developer in Bengaluru. Explore EntitlementCI, MERN projects, Python automation, music and documentaries. Download my resume or get in touch.',
+  title: 'Chaitanyachidambar S. Kulkarni | Full Stack Developer & Creator',
+  description: 'Chaitanyachidambar S. Kulkarni, a full stack developer in Bengaluru. Explore EntitlementCI, MERN projects, Python automation, music and documentaries. Download my resume or get in touch.',
   icons: { icon: '/assets/favicon.svg' },
   openGraph: {
-    title: 'Chaitanya Kulkarni | Code meets creativity',
+    title: 'Chaitanyachidambar S. Kulkarni | Code meets creativity',
     description: 'Full stack development, Python automation and a little creative curiosity. Explore my work and The Chay Show.',
     type: 'website',
     images: shareImages,

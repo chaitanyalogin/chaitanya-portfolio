@@ -6,7 +6,7 @@ Updated 12 October 2026.
 
 * Next.js 16.4.0 and React 19.3.0 installed from the npm registry and locked in package-lock.json.
 * Next.js production compilation and static export.
-* Twenty one Node tests covering contact encoding, sample correction/reset, media IDs, geometry, GPU buffer sizes and indices, matrix correctness, one draw per frame, no per frame geometry uploads, immediate content policy, internal links, downloads and security policy.
+* Twenty two Node tests covering contact encoding, sample correction/reset, media IDs, geometry, GPU buffer sizes and indices, matrix correctness, one draw per frame, no per frame geometry uploads, immediate content policy, internal links, downloads and security policy.
 * Contact and resume assets preserved.
 * Static export CSP hashes generated for the actual inline bootstrap scripts.
 
@@ -20,14 +20,20 @@ These are architecture and code measurements. They are not a measured device FPS
 
 ## Review still needed
 
-The supported browser QA capability is unavailable in this environment. WebGL shader compilation, page rendering, media playback, keyboard focus and sustained frame rates still need verification in an actual desktop and phone browser before publication. Mock GPU tests verify command behavior and matrix contracts, not real hardware execution.
+The supported browser QA capability is unavailable in this environment. WebGL shader compilation, page rendering, media playback, keyboard focus and sustained frame rates still need verification in an actual desktop and phone browser on the live site. Mock GPU tests verify command behavior and matrix contracts, not real hardware execution.
 
 The Windows launcher was not run on Windows. Its supplied preview server serves the optimized export and is intended for local review.
 
 ## Hosting
 
-No Cloudflare, Vercel or Sites deployment was initiated for this portfolio. GitHub push remains pending creation of the dedicated repository selected by the user.
+The user deployed the portfolio on Cloudflare Pages with automatic GitHub updates. Live HTTP inspection showed that Pages served the raw `index.html`, whose module did not start the interaction controller. A dedicated `bootstrap.js` now initializes that entry, while the Next.js client entry remains idempotent. The supported browser QA capability is unavailable; live device interaction still requires user verification.
 
 ## Homepage preview fix
 
 Corrected a directory boundary check that rejected the public root itself and produced HTTP 403. Regression checks cover Windows and POSIX trailing separators, actual homepage GET and HEAD responses, Next.js script loading, PDF responses, traversal rejection and the custom 404. The handler is tested without starting a browser or listening server.
+
+## Hosted interaction correction
+
+The actual HTML module entry is exercised against a DOM fixture, checking motion on/off and persistence, sample correction, demo opening and closing, modified link clicks, empty-form validation, WhatsApp draft navigation, and duplicate initialization. The fixture intentionally has no WebGL context to verify that controls work even when GPU rendering is unavailable. Existing GPU tests cover buffers, transforms and drawing commands separately.
+
+Full name updated in page content and metadata. Both Data Analyst and ongoing MCA entries include local SVG illustrations. The EntitlementCI reviewer URL responds with HTTP 200 and no frame-blocking response header. A direct demo link remains available without JavaScript.

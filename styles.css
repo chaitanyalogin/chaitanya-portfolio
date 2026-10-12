@@ -378,3 +378,9 @@ h2{font-size:clamp(48px,5vw,74px);line-height:1.02}
 .offscreen-motion *,.offscreen-motion *::before,.offscreen-motion *::after{animation-play-state:paused!important}
 .button{transition:background .15s,transform .15s}
 .hero-art.scene-ready #orbit-canvas{opacity:1;transition:none}
+
+/* Experience artwork remains visible without JavaScript or third party images. */
+.hero-intro{flex-wrap:wrap;line-height:1.7}
+.timeline-visual{margin-top:20px;max-width:520px;overflow:hidden;border:1px solid #363b35;border-radius:10px;background:#181c18}
+.timeline-visual img{display:block;width:100%;height:auto}
+@media(min-width:961px){.experience-heading{position:sticky;top:calc(var(--header) + 30px)}}

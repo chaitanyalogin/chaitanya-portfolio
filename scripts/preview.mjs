@@ -18,7 +18,7 @@ const scene = (await readFile(resolve(root, 'scene.js'), 'utf8')).replace(/^expo
 const gpu = (await readFile(resolve(root, 'lib/gpu-scene.js'), 'utf8')).replace(/^import[^\n]+\n/m, '').replace(/^export /gm, '');
 const app = (await readFile(resolve(root, 'app.js'), 'utf8')).replace(/^import[^\n]+\n/m, '').replace(/^export /gm, '');
 html = html.replace('<link rel="stylesheet" href="styles.css">', `<style>${css}</style>`);
-html = html.replace('<script type="module" src="app.js"></script>', `<script type="module">${scene}\n${gpu}\n${app}\ninitializePortfolio();</script>`);
+html = html.replace('<script type="module" src="bootstrap.js"></script>', `<script type="module">${scene}\n${gpu}\n${app}\ninitializePortfolio();</script>`);
 for (const path of new Set([...html.matchAll(/(?:href|src|content)="(assets\/[^"#?]+)"/g)].map(match => match[1]))) html = html.split(`"${path}"`).join(`"${await assetData(path)}"`);
 await mkdir(resolve(destination, '..'), { recursive: true });
 await writeFile(destination, html);
