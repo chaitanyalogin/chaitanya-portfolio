@@ -1,0 +1,23 @@
+{
+  "name": "chaitanya-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Chaitanya Kulkarni's developer and creator portfolio",
+  "scripts": {
+    "dev": "next dev --port 5173",
+    "build": "next build && node scripts/finalize-export.mjs",
+    "preview:file": "node scripts/preview.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check app.js && node --check scene.js && node --test tests/*.test.mjs",
+    "preview": "node scripts/serve-static.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  }
+}

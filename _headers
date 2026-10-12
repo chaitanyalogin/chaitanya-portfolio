@@ -1,0 +1,15 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://i.ytimg.com data:; font-src 'self'; connect-src 'self'; frame-src https://www.youtube-nocookie.com https://entitlementci-review.vercel.app; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/assets/Chaitanyachidambar_S_Kulkarni_Resume.pdf
+  Content-Type: application/pdf
+
+/assets/Chaitanyachidambar_S_Kulkarni_Resume.docx
+  Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
