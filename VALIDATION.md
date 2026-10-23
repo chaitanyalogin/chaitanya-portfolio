@@ -10,7 +10,7 @@
 
 ## Visual review
 
-The desktop hero and investigation desk were reviewed in the managed browser preview. The preview browser blocked Next development chunk URLs with `ERR_BLOCKED_BY_CLIENT`; interactive behavior in that preview could not be established. Production verification is performed after the automatic Cloudflare deployment.
+The desktop hero and investigation desk were reviewed in the managed browser preview. The preview browser blocked Next development chunk URLs with `ERR_BLOCKED_BY_CLIENT`; interactive behavior in that preview could not be established. The automatic Cloudflare deployment was verified live: case switching by click and arrow keys, mobile navigation opening and closing, and empty contact-form validation. The live page starts the native controller and reports no application console errors. A narrow 320px overflow found during this review was corrected by allowing hero grid items to shrink and scaling the headline to the available width.
 
 ## Content boundaries
 
