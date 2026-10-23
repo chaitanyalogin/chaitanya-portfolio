@@ -1,23 +1,19 @@
-# Chaitanyachidambar S. Kulkarni Portfolio
+# Chaitanya Kulkarni — AML & KYC portfolio
 
-A Next.js portfolio with GPU rendered 3D, project showcases, The Chay Show videos, resume downloads and WhatsApp contact.
+Live: https://chaitanya-portfolio-a2f.pages.dev/
 
-## Open the supplied download
+An entry-level career portfolio for a commerce graduate moving into AML, KYC and financial crime operations. TraceCase is the featured independent learning project. Its two fictional investigations illustrate why similar transaction metrics can warrant different questions when the supporting evidence changes.
 
-Extract the archive and double click **START_PORTFOLIO.bat** on Windows. Node.js 22 or newer must be installed. The archive includes a production build in `out`, so previewing it does not require installing packages.
+## Develop and verify
 
-The launcher opens `http://localhost:5173`. Keep its terminal window open. This serves the optimized production website, rather than the development server.
-
-## Develop in VS Code
-
-Open this folder, then choose **Terminal → New Terminal**:
+Node.js 22 or newer is required.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open `http://localhost:5173`. After edits, produce an optimized build and preview it:
+Open http://localhost:5173. The development wrapper also accepts `--host` and `--port` for managed previews. Stop the development server before building, because both use Next's default build directory.
 
 ```sh
 npm run build
@@ -25,64 +21,39 @@ npm run check
 npm run preview
 ```
 
-## Technology and performance
+`npm run build` exports Next.js to `out/`, adds hashes for its inline bootstrap scripts to the exported CSP, and regenerates root `index.html` and `styles.css` from the same prerendered page. The root entry runs a native module controller without React hydration. Both deployment paths contain the same content and case comparison.
 
-* Next.js 16.4.0 App Router with static export.
-* React 19.3.0. Portfolio content is prerendered; a small client component loads the interaction controller.
-* Native WebGL2 with GPU vertex transforms, smooth lighting, a depth buffer and a single indexed draw per ordinary frame.
-* Geometry uploads once. The animation loop reuses its rotation buffer and submits only uniforms and drawing commands.
-* Display synchronized animation with adaptive render resolution, capped pixel density and visibility based suspension.
-* Motion controls, system reduced motion support and a static 3D fallback if WebGL is unavailable.
-* Immediate content visibility, no delayed reveal animations, no per scroll layout reads and no continuous backdrop blur compositing.
-* On demand YouTube and project embeds. Public files are served locally, including the PDF and Word resumes.
+`npm run preview:file` produces a self-contained HTML preview in `dist/`. External project links still need an internet connection. Resume and social assets are included locally.
 
-The software Canvas renderer from the first version is removed. The GPU renderer changes the actual rendering work; adopting Next.js alone would not have fixed the frame cost.
+## Content and interactions
+
+- TraceCase live demo, source and evidence-review workflow come first.
+- The case excerpt supports mouse, touch and standard keyboard tab navigation.
+- The background retains actual software and reporting roles; it does not relabel them as professional AML experience.
+- The existing CV is explicitly labelled as a software and reporting background CV, pending the separate AML resume rewrite.
+- Email links, copy-email feedback and a WhatsApp draft form provide direct contact paths. The visitor reviews and sends the draft themselves. The site stores no messages and loads no analytics or embedded third-party players.
+- The initial case, background and ordinary links remain readable without JavaScript.
+- Responsive layouts, a skip link, visible keyboard focus, labelled form fields and reduced-motion support are included.
 
 ## Main files
 
 | File | Purpose |
 | --- | --- |
-| `app/page.jsx` | Server rendered portfolio content |
-| `app/layout.jsx` | Metadata and document layout |
-| `app/globals.css` | Production styles and responsive layouts |
-| `app/Enhancements.jsx` | Small client entry point |
-| `bootstrap.js` | Starts interactions when serving the portable HTML entry |
-| `app.js` | Menu, contact, videos, motion controls and sample interaction |
-| `lib/gpu-scene.js` | WebGL2 shaders, GPU setup and animation |
-| `scene.js` | One time mesh construction and geometry helpers |
-| `public/assets/` | Public resume documents, images and favicon |
-| `scripts/finalize-export.mjs` | Static export checks and CSP hashes |
-| `scripts/serve-static.mjs` | Local production preview server |
+| `app/page.jsx` | Prerendered content and accessible markup |
+| `app/globals.css` | Shared responsive styling |
+| `app/layout.jsx` | Search and social metadata |
+| `lib/portfolio-data.js` | Case excerpts and project URLs |
+| `app.js` | Case comparison, navigation and contact controller |
+| `app/Enhancements.jsx` | Next.js client entry |
+| `bootstrap.js` | Portable HTML client entry |
+| `public/assets/`, `assets/` | Matching production and portable public assets |
+| `scripts/finalize-export.mjs` | Export validation, CSP hashes and root entry generation |
+| `scripts/dev.mjs` | Development CLI flag adapter |
 
-The root `index.html`, `bootstrap.js`, `styles.css` and `assets` provide a working portable HTML entry and the design preview generator. Production content is in the `app` directory; production assets are in `public`. Keep the preview template aligned after content changes, or review the production build instead.
+The earlier GPU implementation remains in source history-compatible modules but is not loaded by this design.
 
-## Contact and media
+## Hosting
 
-WhatsApp: `919591454650`. Email: `chaitanyarocks.kulkarni@gmail.com`.
+The existing Cloudflare Pages GitHub integration deploys `main` automatically. Recommended build settings: `npm run build`, output `out`, repository root, `NODE_VERSION=24`. The root portable entry also works with the existing raw static hosting configuration. There are no hosting credentials in this repository.
 
-The WhatsApp form opens a draft. No messages are stored or sent by the website itself. The visitor decides whether to send. There are no visitor analytics scripts.
-
-Project illustrations are explicitly labeled. EntitlementCI sample values demonstrate its purpose; the embedded reviewer demo uses sample data. External links are provided if YouTube or project embedding is blocked.
-
-## Cloudflare Pages
-
-Public site: https://chaitanya-portfolio-a2f.pages.dev/
-
-The user deployed this site with GitHub integration. GitHub pushes trigger automatic updates. This repository contains no hosting credentials.
-
-Use these build settings to publish the optimized Next.js export rather than the raw HTML entry:
-
-| Setting | Value |
-| --- | --- |
-| Framework preset | None |
-| Build command | `npm run build` |
-| Build output | `out` |
-| Production branch | `main` |
-| Root directory | Repository root |
-| Environment variable | `NODE_VERSION=24` |
-
-Next.js runs at build time for this static export. No Next.js server is required on the host. The postbuild step hashes Next.js inline bootstrap scripts into the exported `_headers`, preserving a strict content security policy.
-
-Set `PORTFOLIO_SITE_URL=https://chaitanya-portfolio-a2f.pages.dev` in Cloudflare build variables to enable correct canonical and social image URLs. No placeholder public domain is embedded.
-
-References: [Next.js static export](https://nextjs.org/docs/app/guides/static-exports) and [Cloudflare static HTML hosting](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/).
+`PORTFOLIO_SITE_URL` can override the production canonical URL for Next metadata. The default is the verified Cloudflare site. Native public assets and a strict script policy avoid third-party runtime dependencies.

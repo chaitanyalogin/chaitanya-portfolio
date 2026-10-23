@@ -51,43 +51,29 @@ class Element {
   reportValidity() { return !this.validationMessage; }
 }
 
-test('portable startup wires motion, project demo, sample and WhatsApp form even without WebGL', async () => {
+test('portable startup supports case investigation, keyboard navigation, mobile menu and contact drafts', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const ids = new Map([...html.matchAll(/\bid="([^"]+)"/g)].map(match => [match[1], new Element()]));
   const root = new Element();
-  root.scrollHeight = 2500;
-  const body = new Element();
-  const demo = new Element('A');
-  demo.dataset.media = 'entitlement';
-  const observed = Array.from({ length: 3 }, () => new Element());
-  const statuses = Array.from({ length: 3 }, () => new Element());
-  const preview = new Element();
   const fields = new Map(['name', 'email', 'message'].map(name => [name, new Element()]));
   const form = ids.get('contact-form');
   form.elements = { namedItem: name => fields.get(name) };
+  const tabs = ['C001', 'C002'].map(id => { const el = ids.get('tab-' + id); el.dataset.case = id; return el; });
+  const caseFields = ['reference', 'status', 'multiple', 'verify', 'consider'].map(name => {
+    const el = new Element(); el.dataset.caseField = name; return el;
+  });
+  const events = new Map();
   const document = {
-    documentElement: root, body,
-    querySelector: selector => selector === '.entitlement-window' ? preview : ids.get(selector.slice(1)),
-    querySelectorAll: selector => ({
-      '[data-media]': [demo],
-      '.entitlement-row [data-observed]': observed,
-      '.row-status': statuses,
-      '#contact-form input, #contact-form textarea': [...fields.values()],
-    }[selector] || []),
-    addEventListener() {},
-    createElement: tag => new Element(tag.toUpperCase()),
+    documentElement: root,
+    querySelector: selector => ids.get(selector.slice(1)),
+    querySelectorAll: selector => ({ '[data-case]': tabs, '[data-case-field]': caseFields,
+      '#contact-form input, #contact-form textarea': [...fields.values()] }[selector] || []),
+    addEventListener: (name, handler) => events.set(name, handler),
   };
   let assigned;
-  const storage = new Map();
   const globals = {
     document,
-    window: {
-      innerHeight: 800, scrollY: 0,
-      matchMedia: () => ({ matches: false, addEventListener() {} }),
-      addEventListener() {}, location: { assign: value => { assigned = value; } },
-    },
-    localStorage: { getItem: name => storage.get(name), setItem: (name, value) => storage.set(name, value) },
-    requestAnimationFrame: () => 1, cancelAnimationFrame() {},
+    window: { matchMedia: () => ({ addEventListener() {} }), location: { assign: value => { assigned = value; } } },
     FormData: class { get(name) { return fields.get(name).value; } },
   };
   const prior = new Map(Object.keys(globals).map(key => [key, Object.getOwnPropertyDescriptor(globalThis, key)]));
@@ -95,40 +81,32 @@ test('portable startup wires motion, project demo, sample and WhatsApp form even
     for (const [key, value] of Object.entries(globals)) Object.defineProperty(globalThis, key, { value, configurable: true, writable: true });
     const entry = html.match(/<script type="module" src="([^"]+)"/)[1];
     await import(new URL(`../${entry}`, import.meta.url));
-    const motion = ids.get('motion-toggle');
-    assert.equal(motion.querySelector('span').textContent, 'Motion on');
-    motion.emit('click');
-    assert.equal(motion.getAttribute('aria-pressed'), 'true');
-    assert.equal(storage.get('chay-motion'), 'off');
-    motion.emit('click');
-    assert.equal(motion.querySelector('span').textContent, 'Motion on');
-
-    ids.get('sample-toggle').emit('click');
-    assert.deepEqual(observed.map(element => element.textContent), ['Allowed', 'Allowed', '500,000']);
-    assert.ok(preview.classList.contains('sample-resolved'));
-
-    const event = demo.emit('click');
-    assert.ok(event.prevented);
-    assert.ok(ids.get('media-dialog').open);
-    assert.equal(ids.get('media-frame').children[0].src, 'https://entitlementci-review.vercel.app/');
-    ids.get('media-close').emit('click');
-    assert.equal(ids.get('media-frame').children.length, 0);
-    assert.ok(!ids.get('media-dialog').open);
-    assert.ok(!demo.emit('click', { ctrlKey: true }).prevented, 'Modified clicks retain normal link behavior');
-
+    const menu = ids.get('menu-toggle');
+    menu.emit('click');
+    assert.equal(menu.getAttribute('aria-expanded'), 'true');
+    events.get('keydown')({ key: 'Escape' });
+    assert.equal(menu.getAttribute('aria-expanded'), 'false');
+    assert.ok(menu.focused);
+    tabs[1].emit('click');
+    assert.equal(caseFields[0].textContent, 'C002 / VIKRAM SHAH');
+    assert.equal(tabs[1].getAttribute('aria-selected'), 'true');
+    assert.match(caseFields[3].textContent, /fictional/i);
+    tabs[1].emit('keydown', { key: 'Home' });
+    assert.equal(caseFields[0].textContent, 'C001 / ANITA RAO');
+    assert.ok(tabs[0].focused);
+    assert.match(caseFields[3].textContent, /unverified/);
     form.emit('submit');
-    assert.equal(assigned, undefined, 'Empty messages must not navigate');
+    assert.equal(assigned, undefined);
     fields.get('name').value = 'Recruiter';
-    fields.get('message').value = 'A React opportunity\nCan we talk?';
+    fields.get('message').value = 'An AML opportunity\nCan we talk?';
     form.emit('submit');
     const draft = new URL(assigned);
     assert.equal(draft.hostname, 'wa.me');
     assert.equal(draft.pathname, '/919591454650');
-    assert.ok(draft.searchParams.get('text').includes('A React opportunity\nCan we talk?'));
-
+    assert.ok(draft.searchParams.get('text').includes('An AML opportunity\nCan we talk?'));
     const { initializePortfolio } = await import('../app.js');
     initializePortfolio();
-    assert.equal(motion.listeners.get('click').length, 1, 'Initialization must not duplicate handlers');
+    assert.equal(menu.listeners.get('click').length, 1);
   } finally {
     for (const [key, descriptor] of prior) {
       if (descriptor) Object.defineProperty(globalThis, key, descriptor);

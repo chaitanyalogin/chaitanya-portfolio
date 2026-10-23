@@ -49,11 +49,3 @@ test('Shader sources use WebGL2, interpolate normals and apply real depth projec
   assert.ok(FRAGMENT_SHADER.includes('normalize(vNormal)'));
 });
 
-test('Performance policy removes reveal delay and avoids per scroll layout reads',async()=>{
-  const css=await readFile(new URL('../app/globals.css',import.meta.url),'utf8');
-  const app=await readFile(new URL('../app.js',import.meta.url),'utf8');
-  const scroll=app.split('function updateScroll() {')[1].split("window.addEventListener('scroll'")[0];
-  assert.ok(!scroll.includes('getBoundingClientRect'));
-  assert.ok(css.includes('.will-reveal,.will-reveal.is-visible{opacity:1;transform:none;transition:none}'));
-  assert.ok(css.includes('.offscreen-motion *'));
-});

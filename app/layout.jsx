@@ -1,24 +1,21 @@
 import './globals.css';
-
-const publicURL = process.env.PORTFOLIO_SITE_URL;
-const shareImages = publicURL ? [{ url: new URL('/assets/social-card.png', publicURL).href, width: 1200, height: 630 }] : [];
-
+const publicURL = process.env.PORTFOLIO_SITE_URL || 'https://chaitanya-portfolio-a2f.pages.dev';
 export const metadata = {
-  ...(publicURL ? { metadataBase: new URL(publicURL), alternates: { canonical: '/' } } : {}),
-  title: 'Chaitanyachidambar S. Kulkarni | Full Stack Developer & Creator',
-  description: 'Chaitanyachidambar S. Kulkarni, a full stack developer in Bengaluru. Explore EntitlementCI, MERN projects, Python automation, music and documentaries. Download my resume or get in touch.',
+  metadataBase: new URL(publicURL),
+  alternates: { canonical: '/' },
+  title: 'Chaitanya Kulkarni | AML & KYC Portfolio',
+  description: 'Chaitanyachidambar S. Kulkarni: commerce graduate pursuing entry-level AML, KYC and financial crime operations roles in Bengaluru. Explore TraceCase, an independent investigation workbench using fictional cases.',
   icons: { icon: '/assets/favicon.svg' },
   openGraph: {
-    title: 'Chaitanyachidambar S. Kulkarni | Code meets creativity',
-    description: 'Full stack development, Python automation and a little creative curiosity. Explore my work and The Chay Show.',
-    type: 'website',
-    images: shareImages,
+    title: 'Chaitanya Kulkarni | Look closer. Think clearly.',
+    description: 'An AML and KYC candidate with a commerce foundation and experience in data validation and reporting. Explore the TraceCase investigation workbench.',
+    type: 'website', url: publicURL,
+    images: [{ url: '/assets/social-card.png', width: 1200, height: 630, alt: 'Chaitanya Kulkarni: AML and KYC portfolio. Look closer. Think clearly.' }],
   },
   twitter: { card: 'summary_large_image' },
 };
-
-export const viewport = { themeColor: '#111312' };
-
+export const viewport = { themeColor: '#f5f4ee' };
 export default function RootLayout({ children }) {
   return <html lang="en"><body>{children}</body></html>;
 }
+
