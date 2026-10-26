@@ -30,7 +30,8 @@ npm run preview
 - TraceCase live demo, source and evidence-review workflow come first.
 - The case excerpt supports mouse, touch and standard keyboard tab navigation.
 - The background retains actual software and reporting roles; it does not relabel them as professional AML experience.
-- The existing CV is explicitly labelled as a software and reporting background CV, pending the separate AML resume rewrite.
+- The current AML/KYC resume is linked from the hero and background sections.
+- A static, explicitly AI-assisted case walkthrough remains readable while the Streamlit demo wakes up. It is a project explanation, not a candidate-completed assessment.
 - Email links, copy-email feedback and a WhatsApp draft form provide direct contact paths. The visitor reviews and sends the draft themselves. The site stores no messages and loads no analytics or embedded third-party players.
 - The initial case, background and ordinary links remain readable without JavaScript.
 - Responsive layouts, a skip link, visible keyboard focus, labelled form fields and reduced-motion support are included.
